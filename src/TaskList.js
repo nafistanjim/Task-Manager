@@ -1,9 +1,15 @@
 import React from 'react';
 
 const TaskList = ({ tasks, editTask, deleteTask, markComplete }) => {
+  // Priority Sorting (High > Medium> Low)
+  const sortedTasks = [...tasks].sort((a, b) => {
+    const priorityOrder = { High: 1, Medium: 2, Low: 3 };
+    return priorityOrder[a.priority] - priorityOrder[b.priority];
+  });
+
   return (
     <div className="space-y-4">
-      {tasks.map((task) => (
+      {sortedTasks.map((task) => (
         <div
           key={task.id}
           className={`p-4 border-l-4 rounded-lg ${
