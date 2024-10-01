@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TaskForm = ({ addTask, editTask, editingTask }) => {
   const [task, setTask] = useState(
-    editingTask || { title: '', description: '', dueDate: '', priority: 'Low' }
+    editingTask || { title: '', description: '', dueDate: '', priority: 'Low', driveLink: '' }
   );
+
+  useEffect(() => {
+    if (editingTask) {
+      setTask(editingTask);
+    }
+  }, [editingTask]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +23,8 @@ const TaskForm = ({ addTask, editTask, editingTask }) => {
     } else {
       addTask(task);
     }
-    setTask({ title: '', description: '', dueDate: '', priority: 'Low' });
+    // Reset the form after submitting
+    setTask({ title: '', description: '', dueDate: '', priority: 'Low', driveLink: '' });
   };
 
   return (
@@ -36,6 +43,15 @@ const TaskForm = ({ addTask, editTask, editingTask }) => {
         value={task.description}
         onChange={handleChange}
         placeholder="Task Description"
+        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
+      {/* New input field for Google Drive link */}
+      <input
+        type="url"
+        name="driveLink"
+        value={task.driveLink}
+        onChange={handleChange}
+        placeholder="File Google Drive Link"
         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
       />
       <input

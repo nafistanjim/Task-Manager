@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TaskList = ({ tasks, editTask, deleteTask, markComplete }) => {
-  // Priority Sorting (High > Medium> Low)
+  // Sort tasks by priority (High -> Medium -> Low)
   const sortedTasks = [...tasks].sort((a, b) => {
     const priorityOrder = { High: 1, Medium: 2, Low: 3 };
     return priorityOrder[a.priority] - priorityOrder[b.priority];
@@ -27,24 +27,35 @@ const TaskList = ({ tasks, editTask, deleteTask, markComplete }) => {
             >
               Priority: {task.priority}
             </p>
+            {/* Conditionally show the Drive link if it exists */}
+            {task.driveLink && (
+              <a
+                href={task.driveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 underline mt-2 inline-block"
+              >
+                View Attachment
+              </a>
+            )}
           </div>
           <div className="space-x-2">
             <button
               onClick={() => editTask(task)}
-              className="ml-2 mt-1 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
             >
               Edit
             </button>
             <button
               onClick={() => deleteTask(task.id)}
-              className="mt-1 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
+              className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
             >
               Delete
             </button>
             {!task.completed && (
               <button
                 onClick={() => markComplete(task.id)}
-                className="mt-1 px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                className="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600"
               >
                 Mark Complete
               </button>

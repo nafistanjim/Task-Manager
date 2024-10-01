@@ -44,7 +44,7 @@ const App = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-3xl">
-        <h1 className="text-3xl font-bold mb-8 text-center text-blue-600">
+        <h1 className="text-3xl font-bold mb-8 text-center text-blue-500">
           Task Management System
         </h1>
         <TaskForm addTask={addTask} editTask={editTask} editingTask={editingTask} />
