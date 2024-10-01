@@ -31,6 +31,9 @@ const App = () => {
     setEditingTask(task);
   };
   // deleteTask
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
   //markComplete
 
   return (
@@ -43,6 +46,7 @@ const App = () => {
         <TaskList
           tasks={tasks}
           editTask={editExistingTask}
+          deleteTask={deleteTask}
         />
       </div>
     </div>
