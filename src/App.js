@@ -26,15 +26,20 @@ const App = () => {
     setTasks(tasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)));
     setEditingTask(null);
   };
-  // editExistingTask
-  const editExistingTask = (task) => {
-    setEditingTask(task);
-  };
-  // deleteTask
+
   const deleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
   };
-  //markComplete
+
+  const markComplete = (taskId) => {
+    setTasks(
+      tasks.map((task) => (task.id === taskId ? { ...task, completed: true } : task))
+    );
+  };
+
+  const editExistingTask = (task) => {
+    setEditingTask(task);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -47,6 +52,7 @@ const App = () => {
           tasks={tasks}
           editTask={editExistingTask}
           deleteTask={deleteTask}
+          markComplete={markComplete}
         />
       </div>
     </div>

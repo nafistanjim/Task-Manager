@@ -25,19 +25,20 @@ const TaskList = ({ tasks, editTask, deleteTask, markComplete }) => {
           <div className="space-x-2">
             <button
               onClick={() => editTask(task)}
-              className="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="ml-2 mt-1 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
             >
               Edit
             </button>
             <button
               onClick={() => deleteTask(task.id)}
-              className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
+              className="mt-1 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
             >
               Delete
             </button>
             {!task.completed && (
               <button
-                className="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                onClick={() => markComplete(task.id)}
+                className="mt-1 px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600"
               >
                 Mark Complete
               </button>

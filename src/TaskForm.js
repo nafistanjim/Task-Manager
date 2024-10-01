@@ -7,7 +7,7 @@ const TaskForm = ({ addTask, editTask, editingTask }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setTask({ task, [name]: value });
+    setTask({ ...task, [name]: value });
   };
 
   const handleSubmit = (e) => {
